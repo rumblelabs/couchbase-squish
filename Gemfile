@@ -5,8 +5,7 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
+gem "couchbase-ruby-client", :git => "git://github.com/couchbase/couchbase-ruby-client.git", :require => "couchbase"
 
 # Gems used only for assets and not required
 # in production environments by default.
