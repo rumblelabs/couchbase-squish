@@ -37,10 +37,10 @@ class Link
 
   def initialize(attributes = {})
     @errors = ActiveModel::Errors.new(self)
-    @views ||= 0
     attributes.each do |name, value|
       send("#{name}=", value)
     end
+    self.views ||= 0
   end
 
   def persisted?
