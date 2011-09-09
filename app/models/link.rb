@@ -29,7 +29,7 @@ class Link
     return nil unless key
     begin
       doc = Couch.client.get(key)
-      self.new(:key => key, :url => doc.url, :views => doc.views)
+      self.new(:key => key, :url => doc['url'], :views => doc['views'])
     rescue Memcached::NotFound => e
       nil
     end
