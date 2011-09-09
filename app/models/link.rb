@@ -5,9 +5,15 @@ class Link
   extend ActiveModel::Callbacks
   extend ActiveModel::Naming
 
-  # Couch.client.save_design_doc('link', 'by_view_count' => {
-  #   'map' => 'function(doc){ if(doc.type == "link"){ emit(doc.views, doc); }}'
-  # })
+  # TODO if we were to change the design document it would not save automatically
+  #      to update correctly we need to first retrieve the design doc
+  #      to allow the _rev to be updated
+  #
+  unless Couch.client.design_docs.include?("link")
+    Couch.client.save_design_doc('link', 'by_view_count' => {
+      'map' => 'function(doc){ if(doc.type == "link"){ emit(doc.views, doc); }}'
+    })
+  end
 
   define_model_callbacks :save
 
