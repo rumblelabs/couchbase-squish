@@ -2,23 +2,23 @@
   <%= render :partial => "form" %>
 </div>
 
-<div class="row">
 <%- if @links.size > 0 -%>
-<table>
-  <thead>
-    <th>Shortened Link</th>
-    <th>Views</th>
-    <th>Long Link</th>
-  </thead>
-  <tbody>
-    <%- @links.each do |link| -%>
-    <tr>
-      <td><%= url_for(link.key) %></td>
-      <td><%= link.views %></td>
-      <td><%= link.url %></td>
-    </tr>
-    <%- end -%>
-  </tbody>
-</table>
-<%- end -%>
+<div class="row">
+  <table>
+    <thead>
+      <th>Shortened Link</th>
+      <th>Views</th>
+      <th>Long Link</th>
+    </thead>
+    <tbody>
+      <%- @links.each do |link| -%>
+      <tr>
+        <td><%= url_for(link.key) %></td>
+        <td><%= link.views %></td>
+        <td><%= link.url %></td>
+      </tr>
+      <%- end -%>
+    </tbody>
+  </table>
 </div>
+<%- end -%>
