@@ -9,16 +9,22 @@ class Link
 
   attr_accessor :url, :key
 
-  validates :url, :presence => true
+  validates :url, :presence => true, :url => true
   before_save :generate_key
+
+  def to_param
+    self.key
+  end
 
   def self.popular
     []
   end
 
   def self.find(key)
+    return nil unless key
     begin
-      Couch.client.get(self.key)
+      url = Couch.client.get(key)
+      self.new(:key => key, :url => url)
     rescue Memcached::NotFound => e
       nil
     end
@@ -32,14 +38,18 @@ class Link
   end
 
   def persisted?
-    false
+    return false unless key
+    return false unless valid?
+    self.class.find(key).url == self.url
   end
 
   def save
-    Couch.client.set(self.key, {
-      :url => self.url,
-      :key => self.key
-    })
+    return false unless valid?
+    run_callbacks :save do
+      Couch.client.set(self.key, self.url)
+      # TODO should set return nil if sucessful? don't think so
+    end
+    true
   end
 
   def generate_key
