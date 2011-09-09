@@ -1,7 +1,1 @@
-<%- @link.errors.each do |field, message| -%>
-  <strong><%= field %></strong>  <%= message %>
-<%- end -%>
-<%= form_for @link do |f| %>
-  <%= f.text_field :url %>
-  <%= f.submit "Create" %>
-<%- end -%>
+<%= render :partial => "form" %>
