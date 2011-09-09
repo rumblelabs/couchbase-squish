@@ -9,11 +9,11 @@
 </head>
 <body>
   <div class="container">
-    <div class="header sixteen columns">
-      <h1>Couchbase TinyURL</h1>
-      <p>A Demo Rails URL shortening application using <%= link_to "Couchbase", "http://couchbase.org" %></p>
-    </div>
     <div class="sixteen columns">
+      <div class="header row">
+        <h1>Couchbase TinyURL</h1>
+        <p>A Demo Rails URL shortening application using <%= link_to "Couchbase", "http://couchbase.org" %></p>
+      </div>
       <%= yield %>
     </div>
   </div>
