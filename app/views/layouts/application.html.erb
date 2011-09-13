@@ -2,20 +2,27 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CouchbaseTinyurl</title>
+  <title>Squish - Couchbase URL Shortening Application</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
   <div class="container">
-    <div class="sixteen columns">
-      <div class="header row">
-        <h1>Couchbase TinyURL</h1>
-        <p>A Demo Rails URL shortening application using <%= link_to "Couchbase", "http://couchbase.org" %></p>
-      </div>
-      <%= yield %>
-    </div>
+    <header class="header row">
+      <hgroup>
+        <h1>Squish</h1>
+        <h2>A Demo Rails URL shortening application using <%= link_to "Couchbase", "http://couchbase.org" %></h2>
+      </hgroup>
+    </header>
+  </div>
+  
+  <%= yield %>
+  
+  <div class="full-width">
+    <footer class="container">
+      <p>A <a href="http://rumblelabs.com">Rumble Labs</a> Creation</p>
+    </footer>
   </div>
 </body>
 </html>

@@ -1,24 +1,26 @@
-<div class="row">
-  <%= render :partial => "form" %>
+<div class="full-width">
+  <div class="container">
+      <%= render :partial => "form" %>
+  </div>
 </div>
 
 <%- if @links.size > 0 -%>
-<div class="row">
-  <table>
-    <thead>
-      <th>Shortened Link</th>
-      <th>Views</th>
-      <th>Long Link</th>
-    </thead>
-    <tbody>
-      <%- @links.each do |link| -%>
-      <tr>
-        <td><%= link_to short_url(link.key), short_url(link.key) %></td>
-        <td><%= link.views %></td>
-        <td><%= link_to(link.url, link.url) %></td>
-      </tr>
-      <%- end -%>
-    </tbody>
-  </table>
+<div class="container">
+    <table>
+      <thead>
+        <th>Shortened Link</th>
+        <th>Views</th>
+        <th>Long Link</th>
+      </thead>
+      <tbody>
+        <%- @links.each do |link| -%>
+        <tr>
+          <td><%= link_to short_url(link.key), short_url(link.key) %></td>
+          <td><%= link.views %></td>
+          <td><%= link_to(link.url, link.url) %></td>
+        </tr>
+        <%- end -%>
+      </tbody>
+    </table>
 </div>
 <%- end -%>

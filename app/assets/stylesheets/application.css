@@ -3,31 +3,8 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
- *= require base
- *= require skeleton
- *= require layout
+ *= require partials/_reset
+ *= require partials/_forms
+ *= require partials/_layout
+ *= require partials/_application
 */
-
-body{
-  font-family: "ff-meta-serif-web-pro-1","ff-meta-serif-web-pro-2",Georgia,"Times New Roman",Times,serif;
-}
-.header{
-  margin:1em 0;
-  text-align:center;
-}
-.header h1{
-}
-
-#new_link input[type=text]{
-  width:75%;
-  height:30px;
-  float:left;
-}
-
-#new_link input[type=submit]{
-  width:20%;
-  height:43px;
-  margin-left:4%;
-  font-size:20px;
-  float:left;
-}
