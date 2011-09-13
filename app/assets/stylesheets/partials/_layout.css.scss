@@ -6,7 +6,7 @@
 ================================================== */
 body {
 background: #fff;
-font: 14px/21px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font: 16px/21px myriad-pro-semi-condensed, Helvetica, Arial, sans-serif;
 color: $sqsh-mid-copy;
 -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
 -webkit-text-size-adjust: 100%;
@@ -17,7 +17,7 @@ color: $sqsh-mid-copy;
 ================================================== */
 h1, h2, h3, h4, h5, h6 {
 color: #181818;
-font-family: Helvetica, Arial, sans-serif;
+font-family: myriad-pro-semi-condensed, Helvetica, Arial, sans-serif;
 font-weight: normal; }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { font-weight: inherit; }
 h1 { font-size: 46px; line-height: 50px; margin-bottom: 14px;}
@@ -65,4 +65,43 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
 
 /* #layout
 ================================================== */
+
+.header-wrapper {
+  header {
+    h1 {
+      text-indent:-999px;
+      display: block;
+      background: transparent url('/assets/squish-logo.png') no-repeat;
+      width: 260px;
+      height: 61px;
+      margin: 60px 0 10px 350px;
+    }
+    h2 {
+      text-align: center;
+      font-size:14px;
+      line-height:24px;
+      margin-bottom: 40px;
+      a {
+        font-weight: 600;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.squish-wrapper {
+  background: $sqsh-light-grey;
+  padding: 50px 0;
+    input[type="text"] {
+      width: 540px;
+      height: 60px;
+      font-size: 32px;
+      font-weight: 400;
+      font-family: myriad-pro-semi-condensed, helvetica, sans-serif;
+      border: 1px solid $sqsh-mid-grey;
+      @include border-radius (3px 0px 0px 3px);
+      padding: 0 20px;
+      margin: 0 0 0 130px;
+    }
+}
 
