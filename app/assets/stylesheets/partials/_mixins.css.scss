@@ -20,21 +20,6 @@
   }
 }
 
-@mixin linear-gradient($from, $to, $ie: $useIEFilters) {
-  @if $ie != 1 {
-    background-color: $to;
-  }
-  
-  background-image: -moz-linear-gradient($from, $to);
-  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, $from),color-stop(1, $to));
-  background-image: -webkit-linear-gradient($from, $to);
-  background-image: -o-linear-gradient($from, $to);
-
-  @if $ie == 1 { 
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
-    -ms-filter: quote(progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}'));
-  }
-}
 
 @mixin rgba($hex, $alpha, $ie: $useIEFilters) {     
   @if $ie == 1 { 
@@ -76,7 +61,7 @@
 }
 
 
-// position mixin taken from bourbon github.com/thoughtbot/bourbon
+// mixins taken from bourbon github.com/thoughtbot/bourbon
 
 @mixin position ($position: relative, $coordinates: 0 0 0 0) {
 
@@ -116,4 +101,58 @@
        -o-border-radius: $radii;
           border-radius: $radii;
 }
+
+@mixin transform($property: none) {
+//  none | <transform-function>
+  -webkit-transform: $property;
+     -moz-transform: $property;
+      -ms-transform: $property;
+       -o-transform: $property;
+          transform: $property;
+}
+
+@mixin transform-origin($axes: 50%) {
+// x-axis - left | center | right  | length | %
+// y-axis - top  | center | bottom | length | %
+// z-axis -                          length
+  -webkit-transform-origin: $axes;
+     -moz-transform-origin: $axes;
+      -ms-transform-origin: $axes;
+       -o-transform-origin: $axes;
+          transform-origin: $axes;
+}
+
+// Requires Sass 3.1+
+@mixin linear-gradient($pos, $G1, $G2: false,
+                       $G3: false, $G4: false,
+                       $G5: false, $G6: false,
+                       $G7: false, $G8: false,
+                       $G9: false, $G10: false) {
+  // Detect what type of value exists in $pos
+  $pos-type: type-of(nth($pos, 1));
+
+  // If $pos is missing from mixin, reassign vars and add default position
+  @if ($pos-type == color) or (nth($pos, 1) == "transparent")  {
+    $G10: $G9; $G9: $G8; $G8: $G7; $G7: $G6; $G6: $G5;
+     $G5: $G4; $G4: $G3; $G3: $G2; $G2: $G1; $G1: $pos;
+    $pos: top; // Default position
+  }
+
+  $full: compact($G1, $G2, $G3, $G4, $G5, $G6, $G7, $G8, $G9, $G10);
+
+  background-color: nth($G1, 1);
+  background-image: -webkit-gradient(linear, left top, left bottom, from($G1), to($G2)); /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient($pos, $full);
+  background-image:    -moz-linear-gradient($pos, $full);
+  background-image:     -ms-linear-gradient($pos, $full);
+  background-image:      -o-linear-gradient($pos, $full);
+  background-image:        unquote("linear-gradient(#{$pos}, #{$full})");
+}
+
+// Usage: Gradient position is optional, default is top. Position can be a degree. Color stops are optional as well.
+
+// @include linear-gradient(#1e5799, #2989d8);
+// @include linear-gradient(top, #1e5799 0%, #2989d8 50%);
+// @include linear-gradient(50deg, rgba(10, 10, 10, 0.5) 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);
+
 
