@@ -2,7 +2,7 @@ class LinksController < ApplicationController
 
   def index
     @links = Link.popular
-    #@mine = Link.by_session(session[:session_id])
+    @my_links = Link.by_session_id(session[:session_id])
     @link = Link.new
   end
 

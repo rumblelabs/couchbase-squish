@@ -9,15 +9,25 @@ class Link
   #      to update correctly we need to first retrieve the design doc
   #      to allow the _rev to be updated
   #
-  unless Couch.client.design_docs.include?("link")
-    Couch.client.save_design_doc('link', {
-      'by_view_count' => {
-        'map' => 'function(doc){ if(doc.type == "link"){ emit(doc.views, doc); }}',
-      }
-      #'by_session_id' => {
-      #  'map' => 'function(doc){ if(doc.type == "link"){ emit(doc.views, doc); }}',
-      #},
-    })
+
+  def self.design
+    @@design ||= Couch.client.design_docs['link']
+  end
+
+  @@design_doc = {
+    'by_view_count' => {
+      'map' => 'function(doc){ if(doc.type == "link"){ emit(doc.views, doc); }}',
+    },
+    'by_session_id' => {
+      'map' => 'function(doc){ if(doc.type == "link" && doc.session_id != null){ emit(doc.session_id, doc); }}',
+    }
+  }
+  
+  if Couch.client.design_docs.include?("link")
+    Couch.client.delete_design_doc('link')
+    Couch.client.save_design_doc('link', @@design_doc)
+  else
+    Couch.client.save_design_doc('link', @@design_doc)
   end
 
   define_model_callbacks :save
@@ -32,13 +42,13 @@ class Link
   end
 
   def self.popular
-    results = Couch.client.design_docs['link'].by_view_count.entries.sort { |a,b| b['key'] <=> a['key'] }
+    results = design.by_view_count.entries.reverse #.sort { |a,b| b['key'] <=> a['key'] }
     results.map { |r| self.new(:key => r['value']['_id'], :url => r['value']['url'], :views => r['key'], :session_id => r['session_id']) } 
   end
 
-  def self.by_session(session_id)
-    results = Couch.client.design_docs['link'].by_session(session_id).entries.sort { |a,b| b['key'] <=> a['key'] }
-    results.map { |r| self.new(:key => r['value']['_id'], :url => r['value']['url'], :views => r['key'], :session_id => r['session_id']) } 
+  def self.by_session_id(session_id)
+    results = design.by_session_id(:key => session_id).entries.sort { |a,b| b['value']['views'] <=> a['value']['views'] }
+    results.map { |r| self.new(:key => r['value']['_id'], :url => r['value']['url'], :views => r['value']['views'], :session_id => r['value']['session_id']) } 
   end
 
   def self.find(key)
