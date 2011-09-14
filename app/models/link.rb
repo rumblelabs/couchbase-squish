@@ -34,7 +34,7 @@ class Link
   @@keys = [:url, :key, :views, :session_id, :created_at]
 
 
-  validates :url, :presence => true, :url => true
+  validates :url, :presence => true, :url => {:allow_nil => true}
   before_save :generate_key
 
   def to_param
