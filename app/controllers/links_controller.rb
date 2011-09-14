@@ -17,7 +17,7 @@ class LinksController < ApplicationController
     end
   end
 
-  def open
+  def view
     @link = Link.find(params[:id])
     redirect_to root_path unless @link
     @link.views += 1

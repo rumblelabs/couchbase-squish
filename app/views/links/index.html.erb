@@ -6,48 +6,15 @@
 
 <h3>Popular</h3>
 <%- if @popular.size > 0 -%>
-<div class="container">
-    <table>
-      <thead>
-        <th>Shortened Link</th>
-        <th>Views</th>
-        <th>Long Link</th>
-      </thead>
-      <tbody>
-        <%= render @popular %>
-      </tbody>
-    </table>
-</div>
+  <%= render 'links', :links => @popular %>
 <%- end -%>
 
 <h3>My Links</h3>
 <%- if @my_links.size > 0 -%>
-<div class="container">
-    <table>
-      <thead>
-        <th>Shortened Link</th>
-        <th>Views</th>
-        <th>Long Link</th>
-      </thead>
-      <tbody>
-        <%= render @my_links %>
-      </tbody>
-    </table>
-</div>
+  <%= render 'links', :links => @my_links %>
 <%- end -%>
 
 <h3>Recent</h3>
 <%- if @recent.size > 0 -%>
-<div class="container">
-    <table>
-      <thead>
-        <th>Shortened Link</th>
-        <th>Views</th>
-        <th>Long Link</th>
-      </thead>
-      <tbody>
-        <%= render @recent %>
-      </tbody>
-    </table>
-</div>
+  <%= render 'links', :links => @recent %>
 <%- end -%>

@@ -1,5 +1,7 @@
 CouchbaseTinyurl::Application.routes.draw do
-  resources :links
+  resources :links do
+    get :view, :on => :member
+  end
   root :to => 'links#index'
-  match "/:id", :to => 'links#open', :as => :short
+  match "/:id", :to => 'links#view', :as => :short
 end
