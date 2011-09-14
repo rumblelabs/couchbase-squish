@@ -77,7 +77,8 @@ class Link
   end
 
   def persisted?
-    return false unless (key || valid?)
+    return false unless key
+    return false unless valid?
     # TODO need a better way to track if an object is *dirty* or not...
     self.class.find(key).url == self.url
   end
