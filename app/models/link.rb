@@ -20,7 +20,7 @@ class Link
       'map' => 'function(doc){ if(doc.type == "link" && doc.created_at != null){ emit(doc.created_at, doc); }}',
     }
   }
-  
+
   if Couch.client.design_docs.include?("link")
     Couch.client.delete_design_doc('link')
     Couch.client.save_design_doc('link', @@design_doc)
