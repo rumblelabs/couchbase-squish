@@ -4,10 +4,8 @@
   </div>
 </div>
 
-<%= session["session_id"] %>
-
 <h3>Popular</h3>
-<%- if @links.size > 0 -%>
+<%- if @popular.size > 0 -%>
 <div class="container">
     <table>
       <thead>
@@ -16,7 +14,7 @@
         <th>Long Link</th>
       </thead>
       <tbody>
-        <%= render @links %>
+        <%= render @popular %>
       </tbody>
     </table>
 </div>
@@ -33,6 +31,22 @@
       </thead>
       <tbody>
         <%= render @my_links %>
+      </tbody>
+    </table>
+</div>
+<%- end -%>
+
+<h3>Recent</h3>
+<%- if @recent.size > 0 -%>
+<div class="container">
+    <table>
+      <thead>
+        <th>Shortened Link</th>
+        <th>Views</th>
+        <th>Long Link</th>
+      </thead>
+      <tbody>
+        <%= render @recent %>
       </tbody>
     </table>
 </div>

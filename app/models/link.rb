@@ -20,6 +20,9 @@ class Link
     },
     'by_session_id' => {
       'map' => 'function(doc){ if(doc.type == "link" && doc.session_id != null){ emit(doc.session_id, doc); }}',
+    },
+    'by_created_at' => {
+      'map' => 'function(doc){ if(doc.type == "link" && doc.created_at != null){ emit(doc.created_at, doc); }}',
     }
   }
   
@@ -32,7 +35,7 @@ class Link
 
   define_model_callbacks :save
 
-  attr_accessor :url, :key, :views, :session_id
+  attr_accessor :url, :key, :views, :session_id, :created_at
 
   validates :url, :presence => true, :url => true
   before_save :generate_key
@@ -43,12 +46,17 @@ class Link
 
   def self.popular
     results = design.by_view_count.entries.reverse #.sort { |a,b| b['key'] <=> a['key'] }
-    results.map { |r| self.new(:key => r['value']['_id'], :url => r['value']['url'], :views => r['key'], :session_id => r['session_id']) } 
+    results.map { |r| self.new(:key => r['value']['_id'], :url => r['value']['url'], :views => r['key'], :session_id => r['value']['session_id'], :created_at => r['value']['created_at']) } 
   end
 
   def self.by_session_id(session_id)
-    results = design.by_session_id(:key => session_id).entries.sort { |a,b| b['value']['views'] <=> a['value']['views'] }
-    results.map { |r| self.new(:key => r['value']['_id'], :url => r['value']['url'], :views => r['value']['views'], :session_id => r['value']['session_id']) } 
+    results = design.by_session_id(:key => session_id).entries
+    results.map { |r| self.new(:key => r['value']['_id'], :url => r['value']['url'], :views => r['value']['views'], :session_id => r['value']['session_id'], :created_at => r['value']['created_at']) } 
+  end
+
+  def self.recent
+    results = design.by_created_at.entries.reverse
+    results.map { |r| self.new(:key => r['value']['_id'], :url => r['value']['url'], :views => r['value']['views'], :session_id => r['value']['session_id'], :created_at => r['value']['created_at']) } 
   end
 
   def self.find(key)
@@ -83,7 +91,8 @@ class Link
         :url => self.url,
         :key => self.key,
         :views => self.views,
-        :session_id => self.session_id
+        :session_id => self.session_id,
+        :created_at => Time.zone.now
       })
       # TODO should set return nil if sucessful? don't think so
     end

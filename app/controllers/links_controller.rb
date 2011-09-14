@@ -1,7 +1,8 @@
 class LinksController < ApplicationController
 
   def index
-    @links = Link.popular
+    @popular = Link.popular
+    @recent = Link.recent
     @my_links = Link.by_session_id(session[:session_id])
     @link = Link.new
   end
@@ -16,7 +17,7 @@ class LinksController < ApplicationController
     end
   end
 
-  def show
+  def open
     @link = Link.find(params[:id])
     redirect_to root_path unless @link
     @link.views += 1
@@ -24,4 +25,8 @@ class LinksController < ApplicationController
     redirect_to @link.url
   end
 
+  def show
+    @link = Link.find(params[:id])
+  end
+  
 end
