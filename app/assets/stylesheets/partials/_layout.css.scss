@@ -69,12 +69,14 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
 .header-wrapper {
   header {
     h1 {
-      text-indent:-999px;
-      display: block;
-      background: transparent url('/assets/squish-logo.png') no-repeat;
-      width: 260px;
-      height: 61px;
-      margin: 60px 0 10px 350px;
+      a {
+        text-indent:-999px;
+        display: block;
+        background: transparent url('/assets/squish-logo.png') no-repeat;
+        width: 260px;
+        height: 61px;
+        margin: 60px 0 10px 350px;
+      }
     }
     h2 {
       text-align: center;
