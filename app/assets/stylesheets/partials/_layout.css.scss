@@ -76,6 +76,9 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
         width: 260px;
         height: 61px;
         margin: 60px 0 10px 350px;
+        &:hover {
+          opacity: 0.9;
+        }
       }
     }
     h2 {
@@ -99,8 +102,6 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
   background: -ms-linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 2%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,0) 98%,rgba(0,0,0,0.1) 100%); /* IE10+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a000000', endColorstr='#1a000000',GradientType=0 ); /* IE6-9 */
   background: linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 2%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,0) 98%,rgba(0,0,0,0.1) 100%); /* W3C */
-
-  
   padding: 50px 0;
     input[type="text"] {
       width: 540px;
@@ -129,10 +130,27 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
     }
 }
 
+.footer-wrapper {
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 2%, rgba(0,0,0,0) 4%, rgba(0,0,0,0) 96%, rgba(0,0,0,0) 98%, rgba(0,0,0,0.1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.1)), color-stop(2%,rgba(0,0,0,0)), color-stop(4%,rgba(0,0,0,0)), color-stop(96%,rgba(0,0,0,0)), color-stop(98%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 2%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,0) 98%,rgba(0,0,0,0.1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 2%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,0) 98%,rgba(0,0,0,0.1) 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 2%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,0) 98%,rgba(0,0,0,0.1) 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a000000', endColorstr='#1a000000',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 2%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,0) 98%,rgba(0,0,0,0.1) 100%); /* W3C */
+  
+  margin-top: 60px;
+  .container {
+    padding: 40px 0;
+  }
+  
+}
+
 .link-table {
   width: 780px;
   text-align:left;
   margin-left: 90px;
+  margin-top: 60px;
   th {
     border-bottom: 1px solid $sqsh-mid-grey;
     height: 42px;
@@ -178,7 +196,6 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
       font-size: 14px;
       color:$sqsh-mid-copy;
       text-style: italics;
-      
     }
   }
   tr {
@@ -191,10 +208,12 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
     td:last-child  {
       padding-right: 40px;
     }
-   
   }
-  
 }
+
+
+
+
 
 
 #github {
