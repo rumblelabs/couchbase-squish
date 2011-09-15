@@ -1,5 +1,8 @@
-<h3>Short Link</h3>
-<%= link_to short_url(@link), short_url(@link) %>
-<h3>Long Link</h3>
-<%= link_to @link.url, @link.url %>
-
+<div class="full-width squish-wrapper">
+  <div class="container">
+    <h3>Short Link</h3>
+    <%= link_to short_url(@link), short_url(@link) %>
+    <h3>Long Link</h3>
+    <%= link_to @link.url, @link.url %>
+  </div>
+</div>

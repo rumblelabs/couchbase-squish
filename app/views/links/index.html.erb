@@ -5,17 +5,14 @@
 </div>
 <div class="container">
   <%- if @popular.size > 0 -%>
-    <h3>Popular</h3>
     <%= render 'links', :links => @popular %>
   <%- end -%>
 
   <%- if @my_links.size > 0 -%>
-    <h3>My Links</h3>
     <%= render 'links', :links => @my_links %>
   <%- end -%>
 
   <%- if @recent.size > 0 -%>
-    <h3>Recent</h3>
     <%= render 'links', :links => @recent %>
   <%- end -%>
 </div>
