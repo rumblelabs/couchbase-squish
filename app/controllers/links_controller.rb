@@ -11,13 +11,19 @@ class LinksController < ApplicationController
     @link = Link.new(params[:link])
     @link.session_id = session[:session_id]
     if @link.save
-      redirect_to @link
+      respond_to do |format|
+        format.html { redirect_to @link }
+        format.js   { head :status => :success }
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { render :new }
+        format.js   { head :status => 500 }
+      end
     end
   end
 
-  def view
+  def short
     @link = Link.find(params[:id])
     redirect_to root_path unless @link
     @link.views += 1

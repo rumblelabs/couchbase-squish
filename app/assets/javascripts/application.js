@@ -7,3 +7,19 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+//$('#link_url').
+
+
+$(function (){
+  $('#new_link')
+    .bind("ajax:beforeSend", function(e) {
+      alert("PROGRESS");
+    })
+    .bind("ajax:success", function(e){
+      alert("SUCCESS");
+    })
+    .bind("ajax:error", function(e){
+      alert("FAIL");
+    })
+})
