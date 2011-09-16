@@ -1,9 +1,10 @@
 class LinksController < ApplicationController
 
   def index
-    @popular = Link.popular
-    @recent = Link.recent
-    @my_links = Link.by_session_id(session[:session_id])
+    @filter = params[:filter] ||= "my_links"
+    @popular = Link.popular if params[:filter] == "popular"
+    @recent = Link.recent if params[:filter] == "recent"
+    @my_links = Link.by_session_id(session[:session_id]) if params[:filter] == "my_links"
     @link = Link.new
   end
 
@@ -13,7 +14,7 @@ class LinksController < ApplicationController
     if @link.save
       respond_to do |format|
         format.html { redirect_to @link }
-        format.js   { head :status => :success }
+        format.js
       end
     else
       respond_to do |format|

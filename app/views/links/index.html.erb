@@ -4,15 +4,16 @@
   </div>
 </div>
 <div class="container">
-  <%- if @popular.size > 0 -%>
-    <%= render 'links', :links => @popular %>
-  <%- end -%>
-
-  <%- if @my_links.size > 0 -%>
+  <ul class="link-nav <%= " #{@filter}" %>">
+    <li><%= link_to "My Squishes", {:filter => "my_links"}, {:class => "my_links"} %></li>
+    <li><%= link_to "Recently Squished", {:filter => "recent"}, {:class => "recent"} %></li>
+    <li><%= link_to "Popular Squishes", {:filter => "popular"}, {:class => "popular"} %></li>
+  </ul>
+  <%- if @filter == "my_links" %>
     <%= render 'links', :links => @my_links %>
-  <%- end -%>
-
-  <%- if @recent.size > 0 -%>
+  <%- elsif @filter == "popular" %>
+    <%= render 'links', :links => @popular %>
+  <%- elsif @filter == "recent" %>
     <%= render 'links', :links => @recent %>
   <%- end -%>
 </div>
