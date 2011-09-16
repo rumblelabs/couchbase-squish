@@ -244,6 +244,38 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
   }
 }
 
+.short-link-container {
+  margin: 30px 130px 0px;
+  overflow:hidden;
+  
+  label {
+    display:block;
+    width: 160px;
+    height: 60px;
+    line-height: 60px;
+    font-family: league-gothic, helvetica, sans-serif;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    position: relative;
+    @include border-radius (3px 0px 0px 3px);
+    background: $sqsh-blue;
+    color: $sqsh-white;
+    float:left;
+  }
+  input[type="text"] {
+    margin:0;
+    float:left;
+    border-right: 1px solid $sqsh-mid-grey;
+    border-left: none;
+    @include border-radius (0px 3px 3px 0px);
+    font-weight: 600;
+    color: $sqsh-blue;
+  }
+
+}
 
 
 
