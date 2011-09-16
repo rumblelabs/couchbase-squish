@@ -150,7 +150,6 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
   width: 780px;
   text-align:left;
   margin-left: 90px;
-  margin-top: 60px;
   th {
     border-bottom: 1px solid $sqsh-mid-grey;
     height: 42px;
@@ -211,6 +210,39 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
   }
 }
 
+
+.link-nav {
+  width: 100%;
+  overflow: hidden;
+  margin: 60px 0 30px 130px;
+  &.my_links a.my_links, &.recent a.recent, &.popular a.popular {
+    color: $sqsh-dark-copy;
+    font-weight: 600;
+  }
+  li {
+    float: left;
+    color: $sqsh-light-copy;
+    font-size: 18px;
+    &:after {
+      content: "|";
+    }
+    &:last-child { 
+      &:after {
+        content: none;
+      }
+    }
+    &:first-child {
+      a {
+        padding-left: 0;
+      }
+    }
+    a {
+      text-decoration: none;
+      font-size: 18px;
+      padding: 0 12px;
+    }
+  }
+}
 
 
 
