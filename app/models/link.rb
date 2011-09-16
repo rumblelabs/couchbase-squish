@@ -23,10 +23,8 @@ class Link
 
   if Couch.client.design_docs.include?("link")
     Couch.client.delete_design_doc('link')
-    Couch.client.save_design_doc('link', @@design_doc)
-  else
-    Couch.client.save_design_doc('link', @@design_doc)
   end
+  Couch.client.save_design_doc('link', @@design_doc)
 
   define_model_callbacks :save
 
