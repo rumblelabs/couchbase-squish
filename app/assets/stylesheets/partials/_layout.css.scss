@@ -35,7 +35,7 @@ p.lead { font-size: 21px; line-height: 27px; color: #777; }
 a {
   color: $sqsh-blue;
   &:hover{
-    color: $sqsh-dark-blue
+    opacity: 0.9;
   }
 }
 
