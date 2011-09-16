@@ -5,66 +5,21 @@ class Link
   extend ActiveModel::Callbacks
   extend ActiveModel::Naming
 
-  def self.design
-    @@design ||= Couch.client.design_docs['link']
-  end
-
-  @@design_doc = {
-    'by_view_count' => {
-      'map' => 'function(doc){ if(doc.type == "link"){ emit(doc.views, doc); }}',
-    },
-    'by_session_id' => {
-      'map' => 'function(doc){ if(doc.type == "link" && doc.session_id != null){ emit(doc.session_id, doc); }}',
-    },
-    'by_created_at' => {
-      'map' => 'function(doc){ if(doc.type == "link" && doc.created_at != null){ emit(doc.created_at, doc); }}',
-    }
-  }
-
-  if Couch.client.design_docs.include?("link")
-    Couch.client.delete_design_doc('link')
-    Couch.client.save_design_doc('link', @@design_doc)
-  else
-    Couch.client.save_design_doc('link', @@design_doc)
-  end
-
-  define_model_callbacks :save
-
   attr_accessor :url, :key, :views, :session_id, :created_at
   @@keys = [:url, :key, :views, :session_id, :created_at]
 
-
+  define_model_callbacks :save
   validates :url, :presence => true, :url => {:allow_nil => true}
   before_save :generate_key
 
-  def to_param
-    self.key
-  end
-
-  def self.popular
-    results = design.by_view_count(:descending => true).entries
-    results.map { |result| new(result['value']) }
-  end
-
-  def self.by_session_id(session_id)
-    results = design.by_session_id(:key => session_id).entries
-    results.map { |result| new(result['value']) }
-  end
-
-  def self.recent
-    results = design.by_created_at(:descending => true).entries
-    results.map { |result| new(result['value']) }
-  end
-
-  def self.find(key)
-    return nil unless key
-    begin
-      doc = Couch.client.get(key)
-      self.new(doc)
-    rescue Memcached::NotFound => e
-      nil
+  def generate_key
+    while self.key.nil?
+      random = SecureRandom.hex(2)
+      self.key = random if self.class.find(random).nil?
     end
   end
+
+  # ActiveModel
 
   def initialize(attributes = {})
     @errors = ActiveModel::Errors.new(self)
@@ -74,6 +29,10 @@ class Link
     end
     self.views ||= 0
     self.created_at ||= Time.zone.now
+  end
+
+  def to_param
+    self.key
   end
 
   def persisted?
@@ -98,11 +57,54 @@ class Link
     true
   end
 
-  def generate_key
-    while self.key.nil?
-      random = SecureRandom.hex(2)
-      self.key = random if self.class.find(random).nil?
+  def self.find(key)
+    return nil unless key
+    begin
+      doc = Couch.client.get(key)
+      self.new(doc)
+    rescue Memcached::NotFound => e
+      nil
     end
+  end
+
+  # Couchbase Views
+
+  def self.design
+    @@design ||= Couch.client.design_docs['link']
+  end
+
+  @@design_doc = {
+    'by_view_count' => {
+      'map' => 'function(doc){ if(doc.type == "link"){ emit(doc.views, doc); }}',
+    },
+    'by_session_id' => {
+      'map' => 'function(doc){ if(doc.type == "link" && doc.session_id != null){ emit(doc.session_id, doc); }}',
+    },
+    'by_created_at' => {
+      'map' => 'function(doc){ if(doc.type == "link" && doc.created_at != null){ emit(doc.created_at, doc); }}',
+    }
+  }
+
+  if Couch.client.design_docs.include?("link")
+    Couch.client.delete_design_doc('link')
+    Couch.client.save_design_doc('link', @@design_doc)
+  else
+    Couch.client.save_design_doc('link', @@design_doc)
+  end
+
+  def self.popular
+    results = design.by_view_count(:descending => true).entries
+    results.map { |result| new(result['value']) }
+  end
+
+  def self.by_session_id(session_id)
+    results = design.by_session_id(:key => session_id).entries
+    results.map { |result| new(result['value']) }
+  end
+
+  def self.recent
+    results = design.by_created_at(:descending => true).entries
+    results.map { |result| new(result['value']) }
   end
 
 end
