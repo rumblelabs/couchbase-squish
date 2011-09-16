@@ -1,0 +1,2 @@
+$('#new_link').after("<%= escape_javascript(render(:partial => "short_url")) %>");
+$('.link-table').prepend("<%= escape_javascript(render(:partial => "link", :locals => { :link => @link })) %>")

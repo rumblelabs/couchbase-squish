@@ -14,7 +14,7 @@ class LinksController < ApplicationController
     if @link.save
       respond_to do |format|
         format.html { redirect_to @link }
-        format.js   { head :status => :success }
+        format.js
       end
     else
       respond_to do |format|
