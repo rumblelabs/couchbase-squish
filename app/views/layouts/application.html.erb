@@ -18,8 +18,22 @@
       </hgroup>
     </header>
   </div>
+  
+  <div class="full-width squish-wrapper">
+    <div class="container">
+        <%= render :partial => "links/form" %>
+    </div>
+  </div>
+  <div class="container">
+    <ul class="link-nav <%= " #{@filter}" %>">
+      <li><%= link_to "My Squishes", my_links_path, {:remote => true}, {:class => "my_links"} %></li>
+      <li><%= link_to "Recently Squished", recent_links_path, {:remote => true}, {:class => "recent"} %></li>
+      <li><%= link_to "Popular Squishes", popular_links_path, {:remote => true}, {:class => "popular"} %></li>
+    </ul>
 
-  <%= yield %>
+    <%= yield %>
+  
+  </div>
 
   <div class="full-width footer-wrapper">
     <footer class="container">

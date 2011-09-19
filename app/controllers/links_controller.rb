@@ -1,13 +1,4 @@
 class LinksController < ApplicationController
-
-  def index
-    @filter = params[:filter] ||= "my_links"
-    @popular = Link.popular if params[:filter] == "popular"
-    @recent = Link.recent if params[:filter] == "recent"
-    @my_links = Link.by_session_id(session[:session_id]) if params[:filter] == "my_links"
-    @link = Link.new
-  end
-
   def create
     @link = Link.new(params[:link])
     @link.session_id = session[:session_id]
@@ -34,6 +25,21 @@ class LinksController < ApplicationController
 
   def show
     @link = Link.find(params[:id])
+  end
+  
+  def my
+    @filtered_links = Link.by_session_id(session[:session_id])
+    @link = Link.new
+  end
+  
+  def recent
+    @filtered_links = Link.recent
+    @link = Link.new
+  end
+  
+  def popular
+    @filtered_links = Link.popular
+    @link = Link.new
   end
   
 end
