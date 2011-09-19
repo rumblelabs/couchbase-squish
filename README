@@ -1,1 +1,0 @@
-heroku create squish --stack bamboo-ree-1.8.7
