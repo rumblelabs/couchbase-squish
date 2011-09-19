@@ -26,9 +26,9 @@
   </div>
   <div class="container">
     <ul class="link-nav <%= " #{@filter}" %>">
-      <li><%= link_to "My Squishes", my_links_path, {:remote => true}, {:class => "my_links"} %></li>
-      <li><%= link_to "Recently Squished", recent_links_path, {:remote => true}, {:class => "recent"} %></li>
-      <li><%= link_to "Popular Squishes", popular_links_path, {:remote => true}, {:class => "popular"} %></li>
+      <li><%= link_to "My Squishes", my_links_path, {:class => "my_links", :remote => true} %></li>
+      <li><%= link_to "Recently Squished", recent_links_path, {:class => "recent", :remote => true} %></li>
+      <li><%= link_to "Popular Squishes", popular_links_path, {:class => "popular", :remote => true} %></li>
     </ul>
 
     <%= yield %>
