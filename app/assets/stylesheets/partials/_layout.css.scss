@@ -5,11 +5,11 @@
 /* #Basic Styles
 ================================================== */
 body {
-background: #fff;
-font: 16px/21px myriad-pro-semi-condensed, Helvetica, Arial, sans-serif;
-color: $sqsh-mid-copy;
--webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
--webkit-text-size-adjust: 100%;
+  background: #fff;
+  font: 16px/21px myriad-pro-semi-condensed, Helvetica, Arial, sans-serif;
+  color: $sqsh-mid-copy;
+  -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+  -webkit-text-size-adjust: 100%;
  }
 
 
@@ -35,7 +35,7 @@ p.lead { font-size: 21px; line-height: 27px; color: #777; }
 a {
   color: $sqsh-blue;
   &:hover{
-    color: $sqsh-dark-blue
+    opacity: 0.9;
   }
 }
 
@@ -69,12 +69,17 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
 .header-wrapper {
   header {
     h1 {
-      text-indent:-999px;
-      display: block;
-      background: transparent url('/assets/squish-logo.png') no-repeat;
-      width: 260px;
-      height: 61px;
-      margin: 60px 0 10px 350px;
+      a {
+        text-indent:-999px;
+        display: block;
+        background: transparent url('/assets/squish-logo.png') no-repeat;
+        width: 260px;
+        height: 61px;
+        margin: 60px 0 10px 350px;
+        &:hover {
+          opacity: 0.9;
+        }
+      }
     }
     h2 {
       text-align: center;
@@ -97,8 +102,6 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
   background: -ms-linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 2%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,0) 98%,rgba(0,0,0,0.1) 100%); /* IE10+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a000000', endColorstr='#1a000000',GradientType=0 ); /* IE6-9 */
   background: linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 2%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,0) 98%,rgba(0,0,0,0.1) 100%); /* W3C */
-
-  
   padding: 50px 0;
     input[type="text"] {
       width: 540px;
@@ -126,6 +129,155 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
       @include border-radius (0px 3px 3px 0px);
     }
 }
+
+.footer-wrapper {
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 2%, rgba(0,0,0,0) 4%, rgba(0,0,0,0) 96%, rgba(0,0,0,0) 98%, rgba(0,0,0,0.1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.1)), color-stop(2%,rgba(0,0,0,0)), color-stop(4%,rgba(0,0,0,0)), color-stop(96%,rgba(0,0,0,0)), color-stop(98%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 2%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,0) 98%,rgba(0,0,0,0.1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 2%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,0) 98%,rgba(0,0,0,0.1) 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 2%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,0) 98%,rgba(0,0,0,0.1) 100%); /* IE10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a000000', endColorstr='#1a000000',GradientType=0 ); /* IE6-9 */
+  background: linear-gradient(top, rgba(0,0,0,0.1) 0%,rgba(0,0,0,0) 2%,rgba(0,0,0,0) 4%,rgba(0,0,0,0) 96%,rgba(0,0,0,0) 98%,rgba(0,0,0,0.1) 100%); /* W3C */
+  
+  margin-top: 60px;
+  .container {
+    padding: 40px 0;
+  }
+  
+}
+
+.link-table {
+  width: 780px;
+  text-align:left;
+  margin-left: 90px;
+  th {
+    border-bottom: 1px solid $sqsh-mid-grey;
+    height: 42px;
+    vertical-align: middle;
+    font-size: 14px;
+    color: $sqsh-light-copy;
+    &:first-child {
+      padding-left: 40px;
+    }
+    &:last-child {
+      padding-right: 40px;
+    }
+  }
+  td {
+    height: 54px;
+    vertical-align: middle;
+    &.short-url {
+      a {
+        font-weight: 600;
+        text-decoration: none;
+      }
+    }
+    &.long-url {
+      a {
+        text-decoration: none;
+        font-size:14px;
+        color:$sqsh-mid-copy;
+      }
+    }
+    &.num-views {
+      span {
+        display:block;
+        background-color: $sqsh-blue;
+        width: 20px;
+        text-align: center;
+        color: $sqsh-white;
+        font-size: 14px;
+        font-weight: 600;
+        @include border-radius (2px);
+      }
+    }
+    &.time-since {
+      font-size: 14px;
+      color:$sqsh-mid-copy;
+      text-style: italics;
+    }
+  }
+  tr {
+    &:nth-child(even){
+      background: $sqsh-light-grey;
+    }
+    td:first-child  {
+      padding-left: 40px;
+    }
+    td:last-child  {
+      padding-right: 40px;
+    }
+  }
+}
+
+
+.link-nav {
+  width: 100%;
+  overflow: hidden;
+  margin: 60px 0 30px 130px;
+  &.my_links a.my_links, &.recent a.recent, &.popular a.popular {
+    color: $sqsh-dark-copy;
+    font-weight: 600;
+  }
+  li {
+    float: left;
+    color: $sqsh-light-copy;
+    font-size: 18px;
+    &:after {
+      content: "|";
+    }
+    &:last-child { 
+      &:after {
+        content: none;
+      }
+    }
+    &:first-child {
+      a {
+        padding-left: 0;
+      }
+    }
+    a {
+      text-decoration: none;
+      font-size: 18px;
+      padding: 0 12px;
+    }
+  }
+}
+
+.short-link-container {
+  margin: 30px 130px 0px;
+  overflow:hidden;
+  
+  label {
+    display:block;
+    width: 160px;
+    height: 60px;
+    line-height: 60px;
+    font-family: league-gothic, helvetica, sans-serif;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    position: relative;
+    @include border-radius (3px 0px 0px 3px);
+    background: $sqsh-blue;
+    color: $sqsh-white;
+    float:left;
+  }
+  input[type="text"] {
+    margin:0;
+    float:left;
+    border-right: 1px solid $sqsh-mid-grey;
+    border-left: none;
+    @include border-radius (0px 3px 3px 0px);
+    font-weight: 600;
+    color: $sqsh-blue;
+  }
+
+}
+
+
 
 
 #github {

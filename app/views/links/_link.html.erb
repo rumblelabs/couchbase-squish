@@ -1,6 +1,6 @@
 <tr>
-  <td><%= link_to short_url(link.key), short_url(link.key) %></td>
-  <td><%= link.views %></td>
-  <td><%= link_to(link.url, link.url) %></td>
-  <td><%= distance_of_time_in_words link.created_at, Time.zone.now %></td>
+  <td class="short-url"><%= link_to short_url(link.key), short_url(link.key) %></td>
+  <td class="long-url"><%= link_to(truncate(link.url, :length => 64), link.url) %></td>
+  <td class="num-views"><span><%= link.views %></span></td>
+  <td class="time-since"><%= distance_of_time_in_words link.created_at, Time.zone.now %></td>
 </tr>

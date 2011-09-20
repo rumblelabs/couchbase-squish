@@ -3,7 +3,7 @@
   <strong><%= field.to_s.upcase %></strong> <%= message %>.
 <%- end -%>
 <%- end -%>
-<%= form_for @link do |f| %>
-  <%= f.text_field :url, :placeholder => "Enter your URL…" %>
+<%= form_for @link, :remote => true do |f| %>
+  <input type="text" name="link[url]" id="id_url" placeholder="Enter your URL…"/>
   <%= f.submit "Squish It" %>
 <%- end -%>

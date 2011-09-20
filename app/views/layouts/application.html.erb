@@ -13,15 +13,29 @@
   <div class="container header-wrapper">
     <header class="header row">
       <hgroup>
-        <h1>Squish</h1>
+        <h1><a href="/">Squish</a></h1>
         <h2>A Demo Rails URL shortening application using <%= link_to "Couchbase", "http://couchbase.org" %></h2>
       </hgroup>
     </header>
   </div>
+  
+  <div class="full-width squish-wrapper">
+    <div class="container">
+        <%= render :partial => "links/form" %>
+    </div>
+  </div>
+  <div class="container">
+    <ul class="link-nav <%= " #{@filter}" %>">
+      <li><%= link_to "My Squishes", my_links_path, {:class => "my_links", :remote => true} %></li>
+      <li><%= link_to "Recently Squished", recent_links_path, {:class => "recent", :remote => true} %></li>
+      <li><%= link_to "Popular Squishes", popular_links_path, {:class => "popular", :remote => true} %></li>
+    </ul>
 
-  <%= yield %>
+    <%= yield %>
+  
+  </div>
 
-  <div class="full-width">
+  <div class="full-width footer-wrapper">
     <footer class="container">
       <p>A <a href="http://rumblelabs.com">Rumble Labs</a> Creation</p>
       <a id="github" href="https://github.com/rumblelabs/couchbase-tinyurl">

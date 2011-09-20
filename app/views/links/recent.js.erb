@@ -1,0 +1,2 @@
+$('.link-table').html("<%= escape_javascript(render(:partial => "links", :locals => { :links => @filtered_links })) %>");
+$('.link-nav').removeClass().addClass('recent link-nav');
