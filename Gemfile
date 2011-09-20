@@ -18,6 +18,7 @@ end
 # Development / Test only.
 group :development, :test do
   gem 'ruby-debug'
+  gem 'foreman'
 end
 group :test do
   gem 'turn', :require => false
