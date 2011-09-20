@@ -31,6 +31,7 @@ gem 'jquery-rails'
 
 group :development do
   gem 'ruby-debug'
+  gem 'foreman'
 end
 
 group :test do
