@@ -302,3 +302,17 @@ hr { border: solid #ddd; border-width: 1px 0 0; clear: both; margin: 10px 0 30px
     }
   }
 }
+
+.error {
+  background-color: $sqsh-red;
+  color: $sqsh-white;
+  font-size: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  margin-left:130px;
+  width:680px;
+  margin-top: 20px;
+  font-weight:600;
+  
+}

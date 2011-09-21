@@ -1,7 +1,7 @@
 <%- if @link.errors.any? -%>
-<%- @link.errors.each do |field, message| -%>
-  <strong><%= field.to_s.upcase %></strong> <%= message %>.
-<%- end -%>
+  <%- @link.errors.each do |field, message| -%>
+    <strong><%= field.to_s.upcase %></strong> <%= message %>.
+  <%- end -%>
 <%- end -%>
 <%= form_for @link, :remote => true do |f| %>
   <input type="text" name="link[url]" id="id_url" placeholder="Enter your URL…"/>

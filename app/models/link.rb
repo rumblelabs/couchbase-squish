@@ -9,7 +9,7 @@ class Link
   @@keys = [:url, :key, :views, :session_id, :created_at]
 
   define_model_callbacks :save
-  validates :url, :presence => true, :url => {:allow_nil => true}
+  validates :url, :presence => true, :url => {:allow_nil => true, :message => "This is not a valid URL"}
   before_save :generate_key
 
   def generate_key
